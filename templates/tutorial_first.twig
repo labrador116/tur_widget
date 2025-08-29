@@ -1,0 +1,31 @@
+<form class="crm-template-widget__form tutorial-form">
+  <div class="tutorial-main-panel">
+    <div class="tutorial-main-content">
+      <h2 class="crm-template-widget__header">{{ langs.header }}</h2>
+      <div class="crm-template-widget__p">{{ langs.intro }}</div>
+      <div class="crm-template-widget__p crm-template-widget__p_caption">{{ langs.features_title }}</div>
+      <div class="crm-template-widget__features">
+        {% for feature in langs.features %}
+          <div class="crm-template-widget__feature">{{ feature }}</div>
+        {% endfor %}
+      </div>
+      {{ include_control('button', {
+        class_name: 'js-modal-accept crm-template-widget__button',
+        name: 'button',
+        blue: true,
+        text: langs.button_text
+      }) }}
+    </div>
+    <div class="crm-template-wizard__info">
+      <div class="crm-template-wizard__info-description">
+        {{ langs.info_description }}
+      </div>
+      <h3 class="crm-template-wizard__info-touristic-title">
+        {{ langs.info_title }}
+      </h3>
+      <div class="crm-template-wizard__info-touristic-text">
+        {{ langs.info_text|raw }}
+      </div>
+    </div>
+  </div>
+</form>

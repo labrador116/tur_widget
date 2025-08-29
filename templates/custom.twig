@@ -1,0 +1,123 @@
+<form class="crm-template-widget__form">
+  <h2 class="crm-template-widget__header">{{ langs.example_caption }}</h2>
+
+  {#
+    данный пример с полностью статичной частью виджета
+    при этом точно такой же функциональный, как предыдущие два шага
+
+    в параметрах values хранятся значения, которые пользователь
+    ввел в контролах, либо если значения были подставлены
+    кодом и на них вызывалось событие change
+
+    данный подход работает в формах по всей системе amoCRM
+    если уже более-менее разбирались с этим, то не должно быть проблем
+
+    также можно использовать какие-то свои кастомные контролы
+    финальное значение нужно лишь записывать в hidden-инпут
+    и триггерить change, это значение автоматически запомнится
+    в форме и сохранится для пройденного шага, при возвращении
+    пользоваля на этот шаг все заполненные способом выше
+    данные окажутся в values
+  #}
+
+  {% crm_template_block %}
+    <div class="crm-template-widget__block">
+      <p class="crm-template-widget__p">{{ langs.example_text }} <b>input</b></p>
+      {{ include_control('input', {
+        class_name: 'crm-template-widget__control crm-template-widget__input',
+        name: 'input',
+        placeholder: langs.enter_value_placeholder,
+        value: values.input,
+        additional_data: 'data-id="123" data-type="custom-string"'
+      }) }}
+      {#
+        additional_data - дополнительные data-атрибуты,
+        которые можно прокинуть в контрол
+      #}
+
+      <p class="crm-template-widget__p">{{ langs.example_text }} <b>textarea</b></p>
+      {{ include_control('textarea', {
+        class_name: 'crm-template-widget__control crm-template-widget__textarea',
+        name: 'textarea',
+        placeholder: langs.enter_value_placeholder,
+        value: values.textarea,
+        additional_data: 'data-id="123" data-type="custom-string"'
+      }) }}
+
+      <p class="crm-template-widget__p">{{ langs.example_text }} <b>select</b></p>
+      {{ include_control('select', {
+        class_name: 'crm-template-widget__control crm-template-widget__select',
+        name: 'select',
+        items: cities,
+        selected: values.select,
+        additional_data: 'data-id="123" data-type="custom-string"'
+      }) }}
+
+      <p class="crm-template-widget__p">{{ langs.example_text }} <b>checkboxes_dropdown</b></p>
+      {{ include_control('checkboxes_dropdown', {
+        class_name: 'crm-template-widget__control crm-template-widget__checkboxes-dropdopwn',
+        name: 'checkboxes',
+        items: cities,
+        additional_data: 'data-id="123" data-type="custom-string"'
+      }) }}
+
+      {{ include_control('checkbox', {
+        class_name: 'crm-template-widget__control crm-template-widget__checkbox',
+        name: 'checkbox',
+        value: 'y',
+        checked: values.checkbox == 'y',
+        text: langs.example_text ~ ' checkbox',
+        small: false,
+        additional_data: 'data-id="123" data-type="custom-string"'
+      }) }}
+
+      <p class="crm-template-widget__p">{{ langs.example_text }} <b>date</b></p>
+      {{ include_control('date_field', {
+        class_name: 'crm-template-widget__control crm-template-widget__date',
+        input_class: '',
+        name: 'date',
+        value: values.date,
+        placeholder: '',
+        additional_data: 'data-id="123" data-type="custom-string"'
+      }) }}
+    </div>
+  {% end_crm_template_block %}
+
+  {% crm_template_block %}
+    <div class="crm-template-widget__block">
+      <p class="crm-template-widget__p">{{ langs.example_text }} <b>budget</b></p>
+      {{ include_control('budget', {
+        class_name: 'crm-template-widget__control crm-template-widget__budget',
+        name: 'budget',
+        value: values.budget,
+        placeholder: '',
+        additional_data: 'data-id="123" data-type="custom-string"'
+      }) }}
+
+      <p class="crm-template-widget__p">{{ langs.example_text }} <b>phone</b></p>
+      {{ include_control('phone', {
+        class_name: 'crm-template-widget__control crm-template-widget__phone',
+        name: 'phone',
+        value: values.phone,
+        placeholder: '',
+        additional_data: 'data-id="123" data-type="custom-string"'
+      }) }}
+    </div>
+  {% end_crm_template_block %}
+
+  {#
+    если пользоваться штатным функционалом форм,
+    то у главной кнопки шага (синяя, находится внизу обычно)
+    должен быть класс js-modal-accept
+
+    при клике на кнопку с данным классом форма автоматически
+    сохранится и произойдет переход на следующий шаг
+  #}
+  {{ include_control('button', {
+    class_name: 'js-modal-accept crm-template-widget__button',
+    name: 'button',
+    blue: true,
+    text: 'Отправить',
+    additional_data: 'data-id="123" data-type="custom-string"'
+  }) }}
+</form>

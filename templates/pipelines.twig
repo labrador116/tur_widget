@@ -1,0 +1,37 @@
+<form class="crm-template-widget__form crm-template-widget__form_pipelines">
+  {% for pipeline in pipelines %}
+    {#
+      crm_template_block может принимать один аргумент (строку),
+      в нее можно передать дополнительный класс (классы, если через пробел),
+      который применится к блок
+    #}
+    {% crm_template_block 'crm-template-widget__pipeline js-radio' %}
+      <div class="crm-template-widget__block">
+        <div class="crm-template-widget__switcher-wrapper">
+          <p class="crm-template-widget__p"><b>{{ pipeline.title }}</b></p>
+
+          {% set checkbox_name = 'pipelines[' ~ loop.index0 ~ ']' %}
+
+          {{ include_control('switcher', {
+            blue: true,
+            checked: values[loop.index0] == pipeline.code,
+            switcher_wrapper_class: 'crm-template-widget__switcher',
+            id: 'crm-template-widget__switcher_pipeline' ~ loop.index0,
+            value: pipeline.code,
+            name: checkbox_name
+          }) }}
+        </div>
+
+        <p class="crm-template-widget__p crm-template-widget__p_gray">{{ pipeline.description }}</p>
+      </div>
+    {% end_crm_template_block %}
+  {% endfor %}
+
+  {{ include_control('button', {
+    class_name: 'js-wizard-pipelines-submit crm-template-widget__button',
+    name: 'button',
+    blue: true,
+    text: langs.submit,
+    additional_data: 'data-id="123" data-type="custom-string"'
+  }) }}
+</form>

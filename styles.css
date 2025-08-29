@@ -1,0 +1,72 @@
+.lm_wizard_ecommerce_widget_form {width: 500px;padding-bottom: 60px;}
+
+.lm_wizard_ecommerce_widget_button {position: absolute;bottom: 50px;}
+
+ol.lm_wizard_ecommerce_widget_ol_disc {list-style: disc;}
+
+ol.lm_wizard_ecommerce_widget_ol_dec {list-style: decimal;}
+
+ol.lm_wizard_ecommerce_widget_list {padding-left: 30px;}
+
+ol.lm_wizard_ecommerce_widget_list li {padding-left: 10px;}
+
+.lm_wizard_ecommerce_modal{position: fixed!important;top: 0;left: 0;right: 0;bottom: 0;z-index: 1000;overflow: hidden;}
+.lm_wizard_ecommerce_modal .default-overlay{position: absolute;top: 0;left: 0;bottom: 0;right: 0;z-index: 1;}
+.lm_wizard_ecommerce_modal .lm-modal-header{padding:0 0 15px 15px;font-size:18px;}
+
+#lm_wizard_ecommerce_modal_loader .lm_wizard_ecommerce_ml_msg_wrap{position:absolute;top:50%;left:0;width:100%;text-align:center;margin:30px 0 0 1px;}
+#lm_wizard_ecommerce_modal_loader .spinner-icon{width:40px;height:40px;margin:-20px 0 0 -20px;}
+#lm_wizard_ecommerce_modal_loader .modal-overlay{background:rgba(255,255,255,.6);}
+
+.tutorial-main-panel {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+
+.tutorial-main-content {
+  flex: 1;
+  /* остальное оформление */
+}
+
+.tutorial-side-panel {
+  background: #0088cc; /* или ваш синий */
+  color: #fff;
+  width: 350px; /* или нужная ширина */
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.tutorial-side-panel__header {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.tutorial-side-panel__text {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.tutorial-side-panel__text b {
+  font-weight: bold;
+}
+
+.crm-template-wizard__info-touristic-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 24px 0 8px 0;
+  color: #fff;
+}
+
+.crm-template-wizard__info-touristic-text {
+  font-size: 15px;
+  color: #fff;
+  margin-bottom: 24px;
+}
+
+.crm-template-wizard__info-touristic-text b {
+  font-weight: bold;
+}

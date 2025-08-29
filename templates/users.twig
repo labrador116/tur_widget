@@ -1,0 +1,43 @@
+<form class="crm-template-widget__form">
+  {% for role in roles %}
+    {#
+      crm_template_block - специальный тег, обернет все, что внутри
+      в <div> с нашей разметкой, чтобы появился блок с тенями
+      сделан, чтобы если мы будем менять верстку, то у вас
+      автоматически стиль данного блока тоже обновился
+    #}
+    {% crm_template_block %}
+      <div class="crm-template-widget__block">
+        <p class="crm-template-widget__p crm-template-widget__p_caption"><b>{{ role.title }}</b></p>
+        <p class="crm-template-widget__p crm-template-widget__p_before-input crm-template-widget__p_gray">{{ role.description }}</p>
+
+        {% for i in [0, 1] %}
+          {% set input_name = 'users[' ~ role.code ~ '][' ~ i ~ ']' %}
+
+          {#
+            функция для рендеринга нативных контролов amoCRM
+            первый параметр (строка) - код шаблона контрола из
+            https://www.amocrm.ru/developers/content/integrations/script_js
+
+            второй параметр (объект) - параметры, которые принимает контрол
+            часто используемые контролы можно посмотреть в шаблоне custom.twig
+            данного виджета
+          #}
+          {{ include_control('input', {
+            class_name: 'crm-template-widget__control crm-template-widget__input',
+            name: input_name,
+            placeholder: langs.placeholder,
+            value: values[input_name]
+          }) }}
+        {% endfor %}
+      </div>
+    {% end_crm_template_block %}
+  {% endfor %}
+
+  {{ include_control('button', {
+    class_name: 'js-wizard-users-submit crm-template-widget__button',
+    name: 'button',
+    blue: true,
+    text: langs.submit
+  }) }}
+</form>

@@ -11,12 +11,12 @@
     ],
     "installation": true,
     "support": {
-      "link": "https://www.amocrm.com",
-      "email": "support@amocrm.com"
+      "link": "https://lm-consult.ru/",
+      "email": "support@lm-consult.ru"
     }
   },
   "locations": [
-    "crm_template"
+    "widget"
   ],
   "settings": {
     "noop": {

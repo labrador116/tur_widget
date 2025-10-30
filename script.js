@@ -3,7 +3,8 @@ define([
   './templates.js',
   './steps/first.js',
   './steps/second.js',
-  'text!./templates/tutorial.md'
+  'text!./templates/tutorial.md',
+  'css!./styles.css'
 ], function (_, createTemplatesRenderer, firstStep, secondStep, tutorial) {
   'use strict';
 
@@ -15,35 +16,8 @@ define([
 
     createTemplatesRenderer(this);
 
-    this.loaderShow = function(delay, msg) {
-      var msg = msg || '',
-        delay = parseInt(delay || 500);
-      $('#lm_wizard_ecommerce_modal_loader .lm_wizard_ecommerce_ml_msg_wrap > span').html(msg);
-      $('#lm_wizard_ecommerce_modal_loader').fadeIn(delay);
-    };
-
-    this.loaderMsg = function(msg)
-    {
-      var msg = msg || '';
-      $('#lm_wizard_ecommerce_modal_loader .lm_wizard_ecommerce_ml_msg_wrap > span').html(msg);
-    };
-
-    this.loaderHide = function(delay) {
-      var delay = parseInt(delay || 500);
-      $('#lm_wizard_ecommerce_modal_loader').fadeOut(delay);
-      $('#lm_wizard_ecommerce_modal_loader .lm_wizard_ecommerce_ml_msg_wrap > span').html('');
-    };
-  
     this.callbacks = {
       init: function () {
-        if (!$('.lm_wizard_ecommerce_style').length) {
-					$('head').append(
-						`<link class="lm_wizard_ecommerce_style" href="${self.params.path}/styles.css?v=${self.get_version()}" rel="stylesheet">`
-          );
-          $('body').append(`
-            <div class="lm_wizard_ecommerce_modal" id="lm_wizard_ecommerce_modal_loader" style="display:none;z-index:10001;"><div class="modal-scroller custom-scroll"><div class="default-overlay modal-overlay modal-overlay_white default-overlay-visible"><div class="lm_wizard_ecommerce_ml_msg_wrap"><span></span></div><span class="modal-overlay__spinner spinner-icon spinner-icon-abs-center"></span></div></div></div>
-          `);
-				}
         return true;
       },
       render: function () {
@@ -52,11 +26,21 @@ define([
       bind_actions: function () {
         return true;
       },
+      onSave: function () {
+        return true;
+      },
       register_steps: function () {
         return [
           {
-            description: self.i18n('tutorial').header,
-            handler: _.bind(firstStep, self)
+            header: self.i18n('touristic_tutorial_1').header,    // header является необязательным параметром,
+                                                  // если нужен кастомный html для заголовка
+                                                  // просто можно не передавать его сюда
+
+            caption: self.i18n('touristic_tutorial_1').caption,  // следующие два параметра можно не передавать тоже,
+                                                  // тогда в правой панели не будет текстов
+            description: self.i18n('touristic_tutorial_1').description,
+
+            handler: _.bind(firstStep, self) // функция, которая выполнится при запуске шага
           },
           {
             description: self.i18n('second').description,

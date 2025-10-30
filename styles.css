@@ -70,3 +70,23 @@ ol.lm_wizard_ecommerce_widget_list li {padding-left: 10px;}
 .crm-template-wizard__info-touristic-text b {
   font-weight: bold;
 }
+
+.crm-template-widget__p b {
+  font-weight: bold;
+}
+
+.crm-template-widget__p_caption {
+  font-weight: bold;
+  margin-top: 16px;
+  margin-bottom: 8px;
+  font-size: 16px;
+}
+
+.crm-template-widget__features-list {
+  list-style: disc inside;
+  padding-left: 18px; /* чуть забираем вправо под маркеры */
+  margin: 0;
+}
+.crm-template-widget__features-list .crm-template-widget__feature {
+  margin-bottom: 6px;
+}

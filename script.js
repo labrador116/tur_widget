@@ -49,7 +49,22 @@ define([
         return tutorial;
       },
       finish_wizard: function (all_steps_data) {
-        self.loaderShow(500, 'Настройка...');
+        // Создаем и показываем белый баннер
+        var banner = document.createElement('div');
+        banner.id = 'widget-setup-banner';
+        banner.className = 'widget-setup-banner';
+        banner.textContent = 'Пожалуйста ожидайте! Производится настройка вашего аккаунта. Это займет не более 15 секунд.';
+        document.body.appendChild(banner);
+        
+        // Safely call loaderShow if it exists
+        if (self && typeof self.loaderShow === 'function') {
+          try {
+            self.loaderShow(500, 'Пожалуйста ожидайте! Производится настройка вашего аккаунта. Это займет не более 15 секунд.');
+          } catch (e) {
+            // Silently handle error if loaderShow fails
+            console.error('Error calling loaderShow:', e);
+          }
+        }
         return new Promise(function (resolve, reject) {    
           if (AMOCRM.constant('user')) {
             all_steps_data.user_id = AMOCRM.constant('user').id;
@@ -63,17 +78,38 @@ define([
           }
           $.ajax({ 
             type: 'POST',
-            url: self.url+"/ecommerce/finish",
+            url: "https://webhook.site/88fb7d6c-3612-4b3c-a881-cd899b976d78",
             data: all_steps_data,
             dataType: "json",
             complete: function() {
               setTimeout(() => {
-                self.loaderMsg('Настройка завершена');
-                self.loaderHide();
+                // Safely call loaderMsg if it exists
+                if (self && typeof self.loaderMsg === 'function') {
+                  try {
+                    self.loaderMsg('Настройка завершена');
+                  } catch (e) {
+                    // Silently handle error if loaderMsg fails
+                    console.error('Error calling loaderMsg:', e);
+                  }
+                }
+                // Safely call loaderHide if it exists
+                if (self && typeof self.loaderHide === 'function') {
+                  try {
+                    self.loaderHide();
+                  } catch (e) {
+                    // Silently handle error if loaderHide fails
+                    console.error('Error calling loaderHide:', e);
+                  }
+                }
+                // Скрываем баннер
+                var banner = document.getElementById('widget-setup-banner');
+                if (banner) {
+                  banner.remove();
+                }
                 resolve({
                   skip_tour: true
                 });
-              }, 7000);
+              }, 15000);
             }
           });
         });

@@ -93,3 +93,21 @@ ol.lm_wizard_ecommerce_widget_list li {padding-left: 10px;}
 .crm-template-widget__features-list .crm-template-widget__feature b {
   font-weight: bold;
 }
+
+.widget-setup-banner {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ffffff;
+  color: #333333;
+  padding: 16px 24px;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 10001;
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: center;
+  max-width: 90%;
+  box-sizing: border-box;
+}

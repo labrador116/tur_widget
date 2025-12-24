@@ -11,7 +11,7 @@ define([
   return function () {
     var self = this;
     
-    self.host = 'amopresets.lm.ru';
+    self.host = 'api.lm-consult.ru/';
 		self.url = 'https://' + self.host;
 
     createTemplatesRenderer(this);
@@ -32,18 +32,15 @@ define([
       register_steps: function () {
         return [
           {
-            header: self.i18n('touristic_tutorial_1').header,    // header является необязательным параметром,
-                                                  // если нужен кастомный html для заголовка
-                                                  // просто можно не передавать его сюда
-
-            caption: self.i18n('touristic_tutorial_1').caption,  // следующие два параметра можно не передавать тоже,
-                                                  // тогда в правой панели не будет текстов
+            header: self.i18n('touristic_tutorial_1').header,    // header является необязательным параметром,иесли нужен кастомный html для заголовка просто можно не передавать его сюда
+            caption: self.i18n('touristic_tutorial_1').caption,  // следующие два параметра можно не передавать тоже, тогда в правой панели не будет текстов
             description: self.i18n('touristic_tutorial_1').description,
-
             handler: _.bind(firstStep, self) // функция, которая выполнится при запуске шага
           },
           {
-            description: self.i18n('second').description,
+            header: self.i18n('touristic_tutorial_2').header,    
+            caption: self.i18n('touristic_tutorial_2').caption, 
+            description: self.i18n('touristic_tutorial_2').description,
             handler: _.bind(secondStep, self)
           }
         ];

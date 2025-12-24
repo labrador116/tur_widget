@@ -90,3 +90,6 @@ ol.lm_wizard_ecommerce_widget_list li {padding-left: 10px;}
 .crm-template-widget__features-list .crm-template-widget__feature {
   margin-bottom: 6px;
 }
+.crm-template-widget__features-list .crm-template-widget__feature b {
+  font-weight: bold;
+}

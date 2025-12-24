@@ -6,12 +6,10 @@ define(['../templates.js'], function (getTemplateRenderer) {
     return function (params) {
       var self = this;
   
-      return getTemplate('second')
+      return getTemplate('tutorial_second')
         .then(function (template) {
           params.$el.append(template.render({
-            langs: {
-              button_text: self.i18n('second').button_text
-            }
+            langs: self.i18n('touristic_tutorial_2')
           }));
         });
     };
